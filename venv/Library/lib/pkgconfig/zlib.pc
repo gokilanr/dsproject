@@ -1,0 +1,13 @@
+prefix=E:/Notes&projects/Project/dsproject/venv/Library
+exec_prefix=E:/Notes&projects/Project/dsproject/venv/Library
+libdir=E:/Notes&projects/Project/dsproject/venv/Library/lib
+sharedlibdir=E:/Notes&projects/Project/dsproject/venv/Library/lib
+includedir=E:/Notes&projects/Project/dsproject/venv/Library/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.3.1
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
