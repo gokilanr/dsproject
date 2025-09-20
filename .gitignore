@@ -1,3 +1,5 @@
 venv/
 research/research.ipynb
-
+logs/
+artifacts/
+__pycache__/
