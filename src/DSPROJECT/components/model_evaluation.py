@@ -57,13 +57,8 @@ class ModelEvaluation:
 
             # Model registry does not work with file store
             if tracking_url_type_store != "file":
-
-                # Register the model
-
-                # There are other ways to use the Model Registry, which depends on the use case,
-                # please refer to the doc for more information:
-                # https://mlflow.org/docs/latest/model-registry.html#api-workflow
-                mlflow.sklearn.log_model(sk_model=model, name= "model", registered_model_name="ElasticnetModel")
+                # DagsHub doesn’t support registry → just log the model
+                mlflow.sklearn.log_model(sk_model=model, artifact_path="model", registered_model_name="ElasticnetWineModel" )
             else:
                 mlflow.sklearn.log_model(sk_model=model, name="model")
-    
+
