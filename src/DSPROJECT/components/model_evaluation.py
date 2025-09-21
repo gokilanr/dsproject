@@ -11,11 +11,10 @@ from src.DSPROJECT.entity.config_entity import ModelEvaluationConfig
 from src.DSPROJECT.constants import *
 from src.DSPROJECT.utils.common import read_yaml, create_directories,save_json
 
-#import os
-#os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/krishnaik06/datascienceproject.mlflow"
-#os.environ["MLFLOW_TRACKING_USERNAME"]="krishnaik06"
-#os.environ["MLFLOW_TRACKING_PASSWORD"]="7104284f1bb44ece21e0e2adb4e36a250ae3251f"
-
+import os
+os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/gokilanr/dsproject.mlflow"
+os.environ["MLFLOW_TRACKING_USERNAME"]="gokilanr"
+os.environ["MLFLOW_TRACKING_PASSWORD"]="878e759c9d74374c42703e15b24138eb00807cd2"
 
 class ModelEvaluation:
     def __init__(self, config: ModelEvaluationConfig):
@@ -60,10 +59,11 @@ class ModelEvaluation:
             if tracking_url_type_store != "file":
 
                 # Register the model
+
                 # There are other ways to use the Model Registry, which depends on the use case,
                 # please refer to the doc for more information:
                 # https://mlflow.org/docs/latest/model-registry.html#api-workflow
-                mlflow.sklearn.log_model(model, "model", registered_model_name="ElasticnetModel")
+                mlflow.sklearn.log_model(sk_model=model, name= "model", registered_model_name="ElasticnetModel")
             else:
-                mlflow.sklearn.log_model(model, "model")
+                mlflow.sklearn.log_model(sk_model=model, name="model")
     
