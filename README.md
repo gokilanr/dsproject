@@ -1,98 +1,37 @@
-# End to End Data Science Project
-Goal: Build an ML pipeline for Wine Quality prediction with structured modules, tracking experiments with MLflow on DagsHub, and display results on a Flask web interface.
+# Wine Quality Prediction — End-to-End MLOps Pipeline
 
-Dataset: winequality.csv (red/white wine dataset)
+An end-to-end Machine Learning system designed to predict wine quality using modular design patterns, automated data pipelines, MLflow experiment tracking hosted on DagsHub, and an interactive Flask web interface.
 
-Modules/Components:
+---
 
-1.Entity (entity) – Defines configuration and data classes:
-DataIngestionConfig
-DataTransformationConfig
-ModelTrainerConfig
-ModelEvaluationConfig
+## Key Features
 
-2.Configuration (config) – Reads YAML files and provides config objects for each stage:
-ConfigurationManager loads config.yaml and params.yaml
+- **Modular Architecture:** Clear separation of concerns into Config, Entities, Components, and Pipelines.
+- **Automated Validation:** Schema and datatype verification prior to model processing.
+- **Experiment Tracking:** Real-time logging of parameters, metrics (RMSE, MAE, R²), and model artifacts via MLflow & DagsHub.
+- **Web Application:** Lightweight Flask UI allowing single-sample predictions and batch evaluations.
+- **Containerization:** Pre-configured `Dockerfile` for seamless deployment.
 
-3.Constants (constants) – Paths, file names, column names, etc.
+---
 
-4.Utils (utils) – Helper functions:
+## Project Structure
 
-read_yaml, save_json, create_directories, etc.
-
-5.Data Ingestion (data_ingestion):
-
-Load raw data (winequality.csv)
-
-Split into train/test
-
-Save to artifact/raw and artifact/processed
-
-6.Data Transformation (data_transformation):
-
-Clean data, handle missing values
-
-Feature engineering (scaling, encoding, etc.)
-
-Output: transformed train/test datasets
-
-7. Data Validation (data_validation):
-
-Schema validation (check required columns, dtypes)
-
-Value range checks
-
-Output: validation report
-
-8. Model Training (model_trainer):
-
-Train ML model (ElasticNet / RandomForest, etc.)
-
-Save model to artifact/models/model.pkl
-
-Log parameters to MLflow
-
-9. Model Evaluation (model_evaluation):
-
-Load trained model
-
-Predict on test set
-
-Compute metrics (RMSE, MAE, R2)
-
-Save metrics locally
-
-Log metrics & model to MLflow/DagsHub
-
-10. Flask App (app.py):
-
-Simple HTML interface to:
-
-Upload a CSV or input wine features
-
-Display predictions
-
-Display evaluation metrics from MLflow
-not deployed in any cloud.
-
-11. MLflow/DagsHub:
-
-Configure mlflow.set_tracking_uri("https://dagshub.com/<username>/<repo>.mlflow")
-### Workflows--ML Pipeline
-
-1. Data Ingestion
-2. Data Validation
-3. Data Transformation-- Feature Engineering,Data Preprocessing
-4. Model Trainer
-5. Model Evaluation- MLFLOW,Dagshub
-
-## Workflows
-
-1. Update config.yaml
-2. Update schema.yaml
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
+```text
+├── .github/workflows/      # CI/CD deployment pipelines
+├── config/                 # Pipeline configuration files
+│   └── config.yaml
+├── research/               # Jupyter notebook experiments & trials
+├── src/DSPROJECT/
+│   ├── components/         # Ingestion, validation, transformation, training, evaluation
+│   ├── config/             # Configuration managers
+│   ├── constants/          # Static paths and project constants
+│   ├── entity/             # Data classes and configuration types
+│   ├── pipeline/           # Training and prediction stages
+│   └── utils/              # Helper utilities (YAML readers, directory managers)
+├── templates/              # Flask HTML templates
+├── app.py                  # Web application entry point
+├── main.py                 # Pipeline execution entry point
+├── params.yaml             # Model hyperparameters
+├── schema.yaml             # Dataset column definitions and data types
+├── Dockerfile              # Container configuration
+└── requirements.txt        # Project dependencies
